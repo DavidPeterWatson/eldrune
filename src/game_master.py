@@ -20,7 +20,7 @@ class GameMaster:
             choose_campaign_prompt = self.prompter.get_new_campaign_prompt(campaigns)
         else:
             choose_campaign_prompt = self.prompter.get_choose_campaign_prompt(campaigns)
-        chosen_campaign = self.actor.run_conversation(choose_campaign_prompt, "campaign-name")
+        chosen_campaign = self.actor.run_conversation(choose_campaign_prompt, "campaign_name")
         print(f"chosen campaign: {chosen_campaign}")
         self.current_campaign = chosen_campaign
         self.memory.remember_campaign(self.current_campaign)
@@ -29,7 +29,8 @@ class GameMaster:
         print(f"Starting conversation to identify players")
         players = self.memory.recall_players(self.current_campaign)
         identify_players_prompt = self.prompter.get_players_prompt(players)
-        self.current_players = self.actor.run_conversation(identify_players_prompt, "identified-players")
+        self.current_players = self.actor.run_conversation(identify_players_prompt, "identified-players")["identified-players"]
+        print(f"current_players: {self.current_players}")
         self.memory.remember_players(self.current_players)
 
     def run_game(self):

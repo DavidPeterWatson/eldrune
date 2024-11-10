@@ -24,7 +24,7 @@ class ClaudeProvider(AIProvider):
         try:
             response = self.client.messages.create(
                 model="claude-3-sonnet-20240229",
-                max_tokens=64,
+                max_tokens=128,
                 messages=messages
             )
             return response.content[0].text
@@ -45,7 +45,7 @@ class OpenAIProvider(AIProvider):
             response = self.client.chat.completions.create(
                 model=OpenAIModel.GPT_4_MINI,
                 messages=messages,
-                max_tokens=64
+                max_tokens=128
             )
             print(response)
             return response.choices[0].message.content

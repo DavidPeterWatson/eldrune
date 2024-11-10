@@ -13,17 +13,30 @@ class Memory():
         )
 
     def remember_campaign(self, campaign):
-        campaign_id = self.campaigns.insert_one(campaign)
+        query = {'campaign_name': campaign['campaign_name'] }
+        campaign_id = self.campaigns.find_one(query)
+        if campaign_id:
+            print(f'found campaign {campaign_id}')
+        else:
+            campaign_id = self.campaigns.insert_one(campaign)
     
     def recall_campaigns(self):
         return self.campaigns.find_many()
 
+    def remember_player(self, player):
+        query = {'player_name': player['player_name'] }
+        player_id = self.players.find_one(query)
+        if player_id:
+            print(f'found player {player_id}')
+        else:
+            player_id = self.players.insert_one(player)
+
     def remember_players(self, players):
-        campaign_id = self.campaigns.insert_many(players)
+        for player in players:
+            self.remember_player(player)
     
     def recall_players(self, campaign):
-        query = { "campaign": campaign['name'] }
-        return self.campaigns.find_many(query)
+        return self.players.find_many()
 
 def create_memory() -> Memory:
   
