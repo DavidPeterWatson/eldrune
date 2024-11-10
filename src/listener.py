@@ -15,7 +15,7 @@ class OpenAiListener:
         self.recognizer = sr.Recognizer()
         with sr.Microphone() as source:
             self.recognizer.adjust_for_ambient_noise(source, duration=2)
-        self.recognizer.pause_threshold = 2
+        self.recognizer.pause_threshold = 1.2
 
     def listen(self, timeout: int = 15) -> Optional[str]:
         try:
