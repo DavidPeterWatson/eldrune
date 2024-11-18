@@ -11,6 +11,7 @@ class Memory():
             database_name="eldrune_test",
             collection_name="players"
         )
+        self.current_campaign = None
 
     def remember_campaign(self, campaign):
         query = {'campaign_name': campaign['campaign_name'] }

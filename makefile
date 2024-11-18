@@ -9,6 +9,7 @@ install:
 	pip install google-cloud-texttospeech
 	pip install pygame
 	pip install pymongo
+	pip install sqlite3
 install_mongo:
 	brew tap mongodb/brew
 	brew install mongodb-community
