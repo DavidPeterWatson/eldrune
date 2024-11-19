@@ -20,7 +20,6 @@ class Assistant():
         )
 
 
-    def start_conversation(self, actor, completed_handler):
-        completed_tool_name = self.assistant_context.get_completed_tool().get_name()
-        conversation = Conversation(self.assistant.id, actor, self.assistant_context, self.client, completed_tool_name, completed_handler)
+    def run_conversation(self, actor):
+        conversation = Conversation(self.assistant.id, self.assistant_context, actor, self.client)
         conversation.run_conversation(self.assistant_context.get_instructions())

@@ -30,7 +30,7 @@ class GameMaster:
         print(f"Starting conversation to choose campaign")
         campaign_assistant_context = CampaignAssistantContext(self.memory)
         campaign_assistant = Assistant(campaign_assistant_context)
-        campaign_assistant.start_conversation(self.actor, self.run_identify_players_conversation)
+        campaign_assistant.run_conversation(self.actor)
 
 
     def run_identify_players_conversation(self):
@@ -49,8 +49,9 @@ class GameMaster:
     #     print(f"current_players: {self.current_players}")
     #     self.memory.remember_players(self.current_players)
 
-    def start_game(self):
+    def run_game(self):
         self.run_choose_campaign_conversation()
+        self.run_identify_players_conversation()
 
 
 def main():
@@ -60,7 +61,7 @@ def main():
         memory = create_memory()
         actor = Actor()
         game_master = GameMaster(memory, actor)
-        game_master.start_game()
+        game_master.run_game()
     except KeyboardInterrupt:
         print("\nEnding conversation...")
     except Exception as e:

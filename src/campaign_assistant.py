@@ -2,7 +2,7 @@ from typing import List
 from assistant_context import AssistantContext
 from tool import Tool
 from memory import Memory
-
+import json
 
 class GetCampaigns(Tool):
     def __init__(self, memory: Memory):
@@ -28,7 +28,7 @@ class GetCampaigns(Tool):
         }
 
     def use(self, arguments):
-        return self.memory.recall_campaigns()
+        return json.dumps(self.memory.recall_campaigns())
     
 
 class SaveNewCampaign(Tool):
@@ -60,7 +60,7 @@ class SaveNewCampaign(Tool):
         }
     
     def use(self, arguments):
-        return self.memory.remember_campaign(arguments)
+        return json.dumps(self.memory.remember_campaign(arguments))
 
 
 class ChooseCampaign(Tool):
@@ -89,7 +89,10 @@ class ChooseCampaign(Tool):
 
 
     def use(self, arguments):
-        self.memory.current_campaign = arguments[0].name
+        print(str(arguments))
+        chosen_campaign = json.loads(arguments)
+        self.memory.current_campaign = chosen_campaign
+        return ''
 
 class CampaignAssistantContext(AssistantContext):
     def __init__(self, memory: Memory):
