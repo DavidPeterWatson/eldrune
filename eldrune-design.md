@@ -155,3 +155,76 @@ You are a world-builder for a dungeons and dragons table top role playing game. 
 Here is the context of the opening scene. Please describe what the players characters can see, without providing any backstory. Then ask what they want to do.
 
 
+
+
+
+
+History is a collection of events.
+Each event involves a thing existing in a place at a time.
+
+continent of treos emerged on planet in the beginning
+place - continent of treos
+in_place - planet
+time - the beginning
+
+Humans arrive on continent of treos 1 million years ago
+thing - human ancestry
+place - continent of treos
+time - 1 million years ago
+
+
+The martines region emerged in continent of treos in the beginning
+place - martines region
+in_place - continent of treos
+time - the beginning
+
+
+The Darson tribe emerged from human ancestry in martines region 5000 years ago
+thing - Darson tribe
+from_thing - human ancestry
+place - martines region
+time - 5000 years ago
+
+
+The Partelle family emerged from the Darson tribe in the city of pargille 300 years ago
+thing - Partelle family
+from_thing - Darson tribe
+place - pargille city
+time - 300 years ago
+
+
+The barlow suburb built in pargille city 500 years ago
+place - barlow suburb
+from_place - pargille city
+time - 500 years ago
+
+
+The barlow suburb has wealthy people 400 years ago
+thing - wealthy people
+place - barlow suburb
+time - 500 years ago
+
+
+Jeff was born to Partelle family in the Partelle estate 30 years ago
+thing - Jeff
+from_thing - Partelle family
+place - Partelle estate
+time - 30 years ago
+
+
+pig and worm tavern was built in barlow suburb 100 years ago
+thing - pig and worm tavern
+time - 100 years ago
+
+
+Jeff sitting in the pig and worm tavern now
+thing - Jeff Partelle
+place - pig and worm tavern
+time - now
+
+
+Context Query 
+place - pig and worm tavern
+time - now
+
+result: Jeff, humans, wealthy people

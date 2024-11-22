@@ -11,21 +11,6 @@ class GameMaster:
         self.current_players = None
         self.actor = actor
 
-
-    # def run_choose_campaign_conversation(self):
-    #     print(f"Starting conversation to choose campaign")
-    #     campaigns = self.memory.recall_campaigns()
-    #     if len(campaigns) == 0:
-    #         choose_campaign_prompt = self.prompter.get_new_campaign_prompt(campaigns)
-    #     else:
-    #         choose_campaign_prompt = self.prompter.get_choose_campaign_prompt(campaigns)
-
-    #     chosen_campaign = self.actor.run_conversation(choose_campaign_prompt, "campaign_name")
-        
-    #     print(f"chosen campaign: {chosen_campaign}")
-    #     self.current_campaign = chosen_campaign
-    #     self.memory.remember_campaign(self.current_campaign)
-
     def run_choose_campaign_conversation(self):
         print(f"Starting conversation to choose campaign")
         campaign_assistant_context = CampaignAssistantContext(self.memory)
@@ -41,13 +26,17 @@ class GameMaster:
     #     print(f"current_players: {self.current_players}")
     #     self.memory.remember_players(self.current_players)
 
-    # def run_start_campaign(self):
-    #     print(f"Starting conversation to identify players")
+    def run_start_session(self):
+        print(f"Starting conversation to identify players")
     #     players = self.memory.recall_players(self.current_campaign)
     #     identify_players_prompt = self.prompter.get_players_prompt(players)
     #     self.current_players = self.actor.run_conversation(identify_players_prompt, "identified-players")["identified-players"]
     #     print(f"current_players: {self.current_players}")
     #     self.memory.remember_players(self.current_players)
+
+    def run_opening_scene(self):
+        print(f"Starting conversation for opening scene of campaign")
+        
 
     def run_game(self):
         self.run_choose_campaign_conversation()

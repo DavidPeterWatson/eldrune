@@ -1,12 +1,12 @@
 from pymongo import MongoClient
 from typing import Dict, List, Optional, Union
 import json
+from pymongo.database import Database
 
-class MongoDBHandler:
-    def __init__(self, database_name: str, collection_name: str, host: str = 'localhost', port: int = 27017):
+class MongoCollection:
+    def __init__(self, db: Database, collection_name: str):
         try:
-            self.client = MongoClient(host, port)
-            self.db = self.client[database_name]
+            self.db = db
             self.collection = self.db[collection_name]
         except Exception as e:
             raise ConnectionError(f"Failed to connect to MongoDB: {str(e)}")
@@ -14,7 +14,8 @@ class MongoDBHandler:
     def insert_one(self, data: Dict) -> str:
         try:
             result = self.collection.insert_one(data)
-            return str(result.inserted_id)
+            data['_id'] = str(result.inserted_id)
+            return data
         except Exception as e:
             raise Exception(f"Failed to insert document: {str(e)}")
 
@@ -59,6 +60,7 @@ class MongoDBHandler:
         except Exception as e:
             raise Exception(f"Failed to update document: {str(e)}")
 
+
     def update_many(self, query: Dict, update_data: Dict) -> int:
         try:
             result = self.collection.update_many(
@@ -83,5 +85,3 @@ class MongoDBHandler:
         except Exception as e:
             raise Exception(f"Failed to delete documents: {str(e)}")
 
-    def close(self):
-        self.client.close()
